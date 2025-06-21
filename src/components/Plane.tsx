@@ -1,10 +1,15 @@
 import "./Plane.css"
+import Player from "./Player"
 
-const GRID_SIZE = 8
+type PlaneProps = {
+  width: number;
+  height: number;
+  playerPosition: { x: number, y: number };
+}
 
-export default function Plane() {
-  const rows = Array.from({ length: GRID_SIZE }, (_, y) => y)
-  const cols = Array.from({ length: GRID_SIZE }, (_, x) => x)
+export default function Plane({ width, height, playerPosition }: PlaneProps) {
+  const rows = Array.from({ length: height }, (_, y) => y)
+  const cols = Array.from({ length: width }, (_, x) => x)
 
   return (
     <div className="plane">
@@ -12,7 +17,7 @@ export default function Plane() {
         <div className="plane-row" key={`row-${y}`}>
           {cols.map((x) => (
             <div className="plane-cell" key={`${x}-${y}`}>
-              {/* this represents a spacial cell*/}
+              {playerPosition.x === x && playerPosition.y === y && <Player />}
             </div>)
           )}
         </div>)
