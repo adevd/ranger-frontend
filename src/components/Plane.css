@@ -1,0 +1,17 @@
+.plane {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.plane-row {
+	display: flex;
+	gap: 2px;
+}
+
+.plane-cell {
+	width: 40px;
+	height: 40px;
+	background-color: #e0e0e0;
+	border: 1px solid #ccc;
+}
