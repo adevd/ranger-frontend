@@ -1,12 +1,24 @@
 import { useState, useEffect } from "react"
 
 type Position = { x: number; y: number }
+type InputMode = "map" | "chat"
 
 export default function useGameController(gridWidth: number, gridHeight: number) {
 	const [playerPosition, setPlayerPosition] = useState<Position>({ x: 0, y: 0 });
+	const [inputMode, setInputMode] = useState<InputMode>("map")
 
 	useEffect(() => {
 		function handleKeyDown(e: KeyboardEvent) {
+
+			if (e.key === "Tab") {
+				e.preventDefault()
+				setInputMode((currentMode) => currentMode === "map" ? "chat" : "map")
+				return
+			}
+
+			if (inputMode !== "map") return;
+
+
 			setPlayerPosition((pos) => {
 				const next = { ...pos }
 				if (e.key === "ArrowUp") next.y = Math.max(0, pos.y - 1)
@@ -18,8 +30,8 @@ export default function useGameController(gridWidth: number, gridHeight: number)
 		}
 		window.addEventListener("keydown", handleKeyDown)
 		return () => window.removeEventListener("keydown", handleKeyDown)
-	}, [gridHeight, gridWidth])
+	}, [gridHeight, gridWidth, inputMode])
 
 
-	return { playerPosition, setPlayerPosition }
+	return { playerPosition, setPlayerPosition, inputMode, setInputMode }
 }
