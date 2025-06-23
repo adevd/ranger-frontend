@@ -1,0 +1,7 @@
+.game {
+	padding: 3rem;
+	position: relative;
+	width: 80vw;
+	background-color: var(--highlight);
+
+}
