@@ -1,20 +1,35 @@
-.plane {
+.plane-wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.tile-layer {
 	display: grid;
 	grid-template-columns: repeat(var(--plane-width), 1fr);
 	grid-template-rows: repeat(var(--plane-height), 1fr);
 	height: 100%;
 	width: 100%;
-	aspect-ratio: 1 / 1;
-	gap: 2px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background-color: #fefefe;
 }
 
-.plane-row {
-	display: flex;
-	gap: 2px;
+
+.plane-tile {
+	border: 1px solid #ccc;
+	background-color: antiquewhite;
 }
 
-.plane-cell {
+.entity-layer {
+	position: absolute;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: antiquewhite;
+	z-index: 2;
+	pointer-events: none;
+
 }
