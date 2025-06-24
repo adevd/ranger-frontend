@@ -1,7 +1,18 @@
 :root {
+	margin: 0;
 	--highlight: #CDC5B4;
 	--soft-light: #B59DA4;
 	--brown: #6D3D14;
 	--rust: #551B14;
 	--black: #0D1321;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
 }

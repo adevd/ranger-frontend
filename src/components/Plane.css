@@ -1,8 +1,4 @@
-.plane {
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
-}
+.plane {}
 
 .plane-row {
 	display: flex;

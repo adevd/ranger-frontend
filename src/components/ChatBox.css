@@ -1,27 +1,19 @@
 .chatbox {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	width: 100%;
-	max-width: 400px;
 	background: rgba(255, 255, 255, 0.9);
 	border-top: 2px solid #444;
 	font-family: monospace;
-	padding: 0.5rem;
 	display: flex;
 	flex-direction: column;
 }
 
 .chat-log {
-	flex-grow: 1;
-	max-height: 150px;
+	background-color: pink;
 	overflow-y: auto;
-	margin-bottom: 0.5rem;
 	font-size: 0.9rem;
 }
 
 .chat-input {
-	width: 100%;
+	width: 95%;
 	font-size: 1rem;
 	padding: 0.3rem;
 }

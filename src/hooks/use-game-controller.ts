@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react"
 
 type Position = { x: number; y: number }
-type InputMode = "map" | "chat"
+type InputMode = "game" | "chat"
 
 export default function useGameController(gridWidth: number, gridHeight: number) {
 	const [playerPosition, setPlayerPosition] = useState<Position>({ x: 0, y: 0 });
-	const [inputMode, setInputMode] = useState<InputMode>("map")
+	const [inputMode, setInputMode] = useState<InputMode>("game")
 
 	useEffect(() => {
 		function handleKeyDown(e: KeyboardEvent) {
 
 			if (e.key === "Tab") {
 				e.preventDefault()
-				setInputMode((currentMode) => currentMode === "map" ? "chat" : "map")
+				setInputMode((currentMode) => currentMode === "game" ? "chat" : "game")
 				return
 			}
 
-			if (inputMode !== "map") return;
+			if (inputMode !== "game") return;
 
 
 			setPlayerPosition((pos) => {

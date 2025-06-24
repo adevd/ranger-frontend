@@ -1,11 +1,11 @@
-import Game from './components/Game'
 import './App.css'
+import GameScreen from './components/GameScreen'
 
 function App() {
 
   return (
     <>
-      <Game />
+      <GameScreen />
     </>
   )
 }
