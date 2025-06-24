@@ -9,6 +9,7 @@
 	grid-row: 5 / span 8;
 	background: #f5f5f5;
 	position: relative;
+	height: 100%;
 }
 
 .game-pane {

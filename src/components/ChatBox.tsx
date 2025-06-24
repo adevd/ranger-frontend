@@ -32,7 +32,7 @@ export default function ChatBox({ playerPosition }: ChatBoxProps) {
   return (
     <div className="chatbox">
       <div className="chat-log" ref={logRef}>
-        {messages.map((msg, i) => (
+        {[...messages].reverse().map((msg, i) => (
           <div key={i} className="chat-message">
             <strong>{msg.from}:</strong> {msg.text}
           </div>
