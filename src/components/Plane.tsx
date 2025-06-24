@@ -8,20 +8,18 @@ type PlaneProps = {
 }
 
 export default function Plane({ width, height, playerPosition }: PlaneProps) {
-  const rows = Array.from({ length: height }, (_, y) => y)
-  const cols = Array.from({ length: width }, (_, x) => x)
 
   return (
-    <div className="plane">
-      {rows.map((y) => (
-        <div className="plane-row" key={`row-${y}`}>
-          {cols.map((x) => (
-            <div className="plane-cell" key={`${x}-${y}`}>
-              {playerPosition.x === x && playerPosition.y === y && <Player />}
-            </div>)
-          )}
-        </div>)
-      )}
+    <div className="plane" style={{ "--plane-width": width, "--plane-height": height } as React.CSSProperties}>
+      {Array.from({ length: width * height }, (_, i) => {
+        const x = i % width;
+        const y = Math.floor(i / width);
+        return (
+          <div className="plane-cell" key={`${x}-${y}`}>
+            {playerPosition.x === x && playerPosition.y === y && <Player />}
+          </div>
+        )
+      })}
     </div>
   )
 }

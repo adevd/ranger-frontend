@@ -12,9 +12,21 @@
 	height: 100%;
 }
 
-.game-pane {
+.plane-pane {
 	grid-column: 1 / span 7;
 	grid-row: 1 / span 6;
 	background: #222;
 	position: relative;
+}
+
+.inventory-pane {
+	grid-column: 8 / span 5;
+	grid-row: 1 / span 4;
+	background: #333;
+}
+
+.action-queue-pane {
+	grid-column: 1 / span 7;
+	grid-row: 7 / span 8;
+	background: #555;
 }
