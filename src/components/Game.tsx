@@ -7,7 +7,12 @@ import { cx } from "../utils/utils";
 const GRID_WIDTH = 7;
 const GRID_HEIGHT = 6;
 
-export default function Game() {
+
+type GameProps = {
+  tileSize: number;
+}
+
+export default function Game({ tileSize }: GameProps) {
   const { playerPosition, inputMode } = useGameController(GRID_WIDTH, GRID_HEIGHT)
 
   return (
@@ -17,6 +22,7 @@ export default function Game() {
           width={GRID_WIDTH}
           height={GRID_HEIGHT}
           playerPosition={playerPosition}
+          tileSize={tileSize}
         />
       </div>
       <div className={cx("inventory-pane", inputMode === "game" && "focussed")}>

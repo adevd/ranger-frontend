@@ -1,16 +1,15 @@
 import "./Plane.css"
 import Player from "./Player"
-import useGameDimensions from "../hooks/use-game-dimensions"
 
 type PlaneProps = {
   width: number;
   height: number;
   playerPosition: { x: number, y: number };
+  tileSize: number;
 }
 
-export default function Plane({ width, height, playerPosition }: PlaneProps) {
+export default function Plane({ width, height, playerPosition, tileSize }: PlaneProps) {
 
-  const { tileSize } = useGameDimensions(width, height)
   return (
     <div className="plane-wrapper">
       <div className="tile-layer" style={{ "--plane-width": width, "--plane-height": height } as React.CSSProperties}>

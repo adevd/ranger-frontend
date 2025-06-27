@@ -1,25 +1,43 @@
 import { useState, useEffect, useRef } from "react";
+import {
+	UI_GRID_ROWS,
+	UI_GRID_COLS,
+	BASE_TILE_SIZE,
+	MIN_TILE_SIZE,
+	MAX_TILE_SIZE
+} from "../config/gameLayout"
 
-export default function useGameDimensions(gridWidth: number, gridHeight: number) {
+export default function useGameDimensions() {
 	const containerRef = useRef<HTMLDivElement>(null)
-	const [tileSize, setTileSize] = useState(0)
+	const [tileSize, setTileSize] = useState(BASE_TILE_SIZE)
 
 	useEffect(() => {
-		function updateSize() {
-			const container = containerRef.current
+		const container = containerRef.current
+		if (!container) return;
 
-			if (!container) return;
-
+		const updateSize = () => {
 			const { width, height } = container.getBoundingClientRect()
-
-			const newTileSize = Math.floor(
-				Math.min(width / gridWidth, height / gridHeight)
-			)
-
-			setTileSize(newTileSize)
+			const rawTileSize = Math.min(width / UI_GRID_COLS, height / UI_GRID_ROWS)
+			const rounded = Math.floor(rawTileSize / BASE_TILE_SIZE) * BASE_TILE_SIZE
+			const clamped = Math.max(MIN_TILE_SIZE, Math.min(rounded, MAX_TILE_SIZE))
+			setTileSize(clamped)
 		}
-		updateSize()
-	}, [gridHeight, gridWidth])
 
-	return { tileSize, containerRef }
+		const resizeObserver = new ResizeObserver(updateSize)
+		resizeObserver.observe(container)
+
+		updateSize()
+
+		return () => resizeObserver.disconnect()
+
+	}, [])
+
+	return {
+		tileSize,
+		containerRef,
+		totalWidth: tileSize * UI_GRID_COLS,
+		totalHeight: tileSize * UI_GRID_ROWS,
+		gridColumns: UI_GRID_COLS,
+		gridRows: UI_GRID_ROWS,
+	}
 }
