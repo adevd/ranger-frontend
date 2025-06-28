@@ -5,7 +5,7 @@ import {
 	BASE_TILE_SIZE,
 	MIN_TILE_SIZE,
 	MAX_TILE_SIZE
-} from "../config/gameLayout"
+} from "../config/game-layout"
 
 export default function useGameDimensions() {
 	const containerRef = useRef<HTMLDivElement>(null)
