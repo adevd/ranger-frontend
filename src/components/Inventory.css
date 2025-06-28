@@ -1,0 +1,16 @@
+.inventory-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.inventory-grid {
+	display: grid;
+	gap: 2px;
+}
+
+.inventory-slot {
+	border: 1px solid #666;
+	background-color: #226;
+}

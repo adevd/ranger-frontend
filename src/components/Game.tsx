@@ -4,6 +4,7 @@ import Plane from "./Plane"
 import "./Game.css"
 import { cx } from "../utils/utils";
 import ActionQueue from "./ActionQueue";
+import Inventory from "./Inventory";
 
 const GRID_WIDTH = 7;
 const GRID_HEIGHT = 6;
@@ -27,6 +28,7 @@ export default function Game({ tileSize }: GameProps) {
         />
       </div>
       <div className={cx("inventory-pane", inputMode === "game" && "focussed")}>
+        <Inventory tileSize={tileSize} />
       </div >
       <div className={cx("action-queue-pane", inputMode === "game" && "focussed")}>
         <ActionQueue tileSize={tileSize} />
