@@ -1,0 +1,7 @@
+.action-queue {
+	display: flex;
+	gap: 2px;
+	justify-content: space-evenly;
+	align-items: center;
+	height: 100%;
+}

@@ -3,6 +3,7 @@ import ChatBox from "./ChatBox";
 import Plane from "./Plane"
 import "./Game.css"
 import { cx } from "../utils/utils";
+import ActionQueue from "./ActionQueue";
 
 const GRID_WIDTH = 7;
 const GRID_HEIGHT = 6;
@@ -28,6 +29,7 @@ export default function Game({ tileSize }: GameProps) {
       <div className={cx("inventory-pane", inputMode === "game" && "focussed")}>
       </div >
       <div className={cx("action-queue-pane", inputMode === "game" && "focussed")}>
+        <ActionQueue tileSize={tileSize} />
       </div >
       <div className={cx("chat-pane", inputMode === "chat" && "focussed")}>
         <ChatBox playerPosition={playerPosition} />
