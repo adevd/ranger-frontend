@@ -66,7 +66,6 @@ export function executeGameCommand(
 		const [dx, dy] = directionOffsets[command.direction]
 		const nextX = Math.min(Math.max(currentState.x + dx, 0), bounds.x - 1)
 		const nextY = Math.min(Math.max(currentState.y + dy, 0), bounds.y - 1)
-		console.log(nextX, nextY)
 		return { x: nextX, y: nextY }
 	}
 
