@@ -18,5 +18,6 @@ export const defaultInputMap: Record<string, GameCommand> = {
 	e: { type: "interact" },
 
 	Enter: { type: "ready" }
-
 }
+
+

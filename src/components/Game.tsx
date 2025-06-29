@@ -5,6 +5,8 @@ import "./Game.css"
 import { cx } from "../utils/utils";
 import ActionQueue from "./ActionQueue";
 import Inventory from "./Inventory";
+import { useState } from "react";
+import type { GameCommand } from "../core/commands/game-command";
 
 const GRID_WIDTH = 7;
 const GRID_HEIGHT = 6;
@@ -15,7 +17,8 @@ type GameProps = {
 }
 
 export default function Game({ tileSize }: GameProps) {
-  const { playerPosition, inputMode } = useGameController(GRID_WIDTH, GRID_HEIGHT)
+  const { playerPosition, inputMode, selectedSlot, setSelectedSlot } = useGameController(GRID_WIDTH, GRID_HEIGHT)
+  const [actionQueue, setActionQueue] = useState<GameCommand[]>([]);
 
   return (
     <>
@@ -31,7 +34,7 @@ export default function Game({ tileSize }: GameProps) {
         <Inventory tileSize={tileSize} />
       </div >
       <div className={cx("action-queue-pane", inputMode === "game" && "focussed")}>
-        <ActionQueue tileSize={tileSize} />
+        <ActionQueue tileSize={tileSize} selectedSlot={selectedSlot}, actionQueue={actionQueue} />
       </div >
       <div className={cx("chat-pane", inputMode === "chat" && "focussed")}>
         <ChatBox playerPosition={playerPosition} />

@@ -25,19 +25,13 @@ export type UseItemCommand = {
 	itemId: string;
 }
 
-export type ReorderQueueCommand = {
-	type: "reorder-queue";
-	fromIndex: number;
-	toIndex: number;
-}
 
 export type GameCommand =
 	| MoveCommand
 	| InteractCommand
 	| ReadyUpCommand
 	| WaitCommand
-	| UseItemCommand
-	| ReorderQueueCommand;
+	| UseItemCommand;
 
 export function isMoveCommand(cmd: GameCommand): cmd is MoveCommand {
 	return cmd.type === 'move';
