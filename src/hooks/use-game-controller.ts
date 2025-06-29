@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react"
+import { equals, type Vector2 } from "../core/physics/vector2";
+import { defaultInputMap } from "../config/default-input-map";
+import { executeGameCommand } from "../core/commands/game-command";
 
-type Position = { x: number; y: number }
 type InputMode = "game" | "chat"
 
 export default function useGameController(gridWidth: number, gridHeight: number) {
-	const [playerPosition, setPlayerPosition] = useState<Position>({ x: 0, y: 0 });
+	const [playerPosition, setPlayerPosition] = useState<Vector2>({ x: 0, y: 0 });
 	const [inputMode, setInputMode] = useState<InputMode>("game")
+	const [inputMap,] = useState(defaultInputMap)
 
 	useEffect(() => {
 		function handleKeyDown(e: KeyboardEvent) {
-
 			if (e.key === "Tab") {
 				e.preventDefault()
 				setInputMode((currentMode) => currentMode === "game" ? "chat" : "game")
@@ -19,18 +21,23 @@ export default function useGameController(gridWidth: number, gridHeight: number)
 			if (inputMode !== "game") return;
 
 
-			setPlayerPosition((pos) => {
-				const next = { ...pos }
-				if (e.key === "ArrowUp") next.y = Math.max(0, pos.y - 1)
-				if (e.key === "ArrowDown") next.y = Math.min(gridHeight - 1, pos.y + 1)
-				if (e.key === "ArrowLeft") next.x = Math.max(0, pos.x - 1)
-				if (e.key === "ArrowRight") next.x = Math.min(pos.x + 1, gridWidth - 1)
-				return next
-			})
+			const command = inputMap[e.key]
+			if (!command) return;
+
+			const nextPosition = executeGameCommand(
+				command,
+				playerPosition,
+				{ x: gridWidth, y: gridHeight }
+			)
+
+			if (!equals(nextPosition, playerPosition)) {
+				setPlayerPosition(nextPosition)
+			}
+
 		}
 		window.addEventListener("keydown", handleKeyDown)
 		return () => window.removeEventListener("keydown", handleKeyDown)
-	}, [gridHeight, gridWidth, inputMode])
+	}, [gridHeight, gridWidth, inputMode, playerPosition])
 
 
 	return { playerPosition, setPlayerPosition, inputMode, setInputMode }
